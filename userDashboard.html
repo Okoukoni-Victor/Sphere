@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+    />
+    <title>Sphere - User Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link href="/assets/css/app.css" rel="stylesheet" />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+      }
+
+      .stat-card {
+        height: 150px;
+      }
+
+      .icon-circle {
+        width: 56.25px;
+        height: 56.25px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .icon-circle i {
+        font-size: 27px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav id="sidebar" class="sidebar js-sidebar">
+        <div class="sidebar-content js-simplebar">
+          <a class="sidebar-brand mb-3" href="userDashboard.html">
+            <i class="bi bi-globe align-middle"></i>
+            <span class="align-middle ms-1">Sphere</span>
+          </a>
+
+          <ul class="sidebar-nav">
+            <li class="sidebar-item active">
+              <a class="sidebar-link" href="userDashboard.html">
+                <i class="bi bi-speedometer2 align-middle"></i>
+                <span class="align-middle">Dashboard</span>
+              </a>
+            </li>
+
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="userProfile.html">
+                <i class="bi bi-people align-middle"></i>
+                <span class="align-middle">Customers</span>
+              </a>
+            </li>
+
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="sendMessage.html">
+                <i class="bi bi-envelope align-middle"></i>
+                <span class="align-middle">Messaging</span>
+              </a>
+            </li>
+
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="fundAccount.html">
+                <i class="bi bi-wallet2 align-middle"></i>
+                <span class="align-middle">Finance</span>
+              </a>
+            </li>
+
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="notifications.html">
+                <i class="bi bi-bell align-middle"></i>
+                <span class="align-middle">Notifications</span>
+              </a>
+            </li>
+
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="userProfile.html">
+                <i class="align-middle" data-feather="user"></i>
+                <span class="align-middle">Profile</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="main">
+        <nav class="navbar navbar-expand navbar-light navbar-bg">
+          <a class="sidebar-toggle js-sidebar-toggle">
+            <i class="hamburger align-self-center"></i>
+          </a>
+
+          <div class="navbar-collapse collapse">
+            <ul class="navbar-nav navbar-align">
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-icon dropdown-toggle"
+                  href="#"
+                  id="alertsDropdown"
+                  data-bs-toggle="dropdown"
+                >
+                  <div class="position-relative">
+                    <i class="align-middle" data-feather="bell"></i>
+                    <span class="indicator">4</span>
+                  </div>
+                </a>
+                <div
+                  class="dropdown-menu dropdown-menu-lg dropdown-menu-end py-0"
+                  aria-labelledby="alertsDropdown"
+                >
+                  <div class="dropdown-menu-header">4 New Notifications</div>
+                  <div class="list-group">
+                    <a href="#" class="list-group-item">
+                      <div class="row g-0 align-items-center">
+                        <div class="col-2">
+                          <i
+                            class="text-danger"
+                            data-feather="alert-circle"
+                          ></i>
+                        </div>
+                        <div class="col-10">
+                          <div class="text-dark">Update completed</div>
+                          <div class="text-muted small mt-1">
+                            Restart server 12 to complete the update.
+                          </div>
+                          <div class="text-muted small mt-1">30m ago</div>
+                        </div>
+                      </div>
+                    </a>
+                    <a href="#" class="list-group-item">
+                      <div class="row g-0 align-items-center">
+                        <div class="col-2">
+                          <i class="text-warning" data-feather="bell"></i>
+                        </div>
+                        <div class="col-10">
+                          <div class="text-dark">Lorem ipsum</div>
+                          <div class="text-muted small mt-1">
+                            Aliquam ex eros, imperdiet vulputate hendrerit et.
+                          </div>
+                          <div class="text-muted small mt-1">2h ago</div>
+                        </div>
+                      </div>
+                    </a>
+                    <a href="#" class="list-group-item">
+                      <div class="row g-0 align-items-center">
+                        <div class="col-2">
+                          <i class="text-primary" data-feather="home"></i>
+                        </div>
+                        <div class="col-10">
+                          <div class="text-dark">Login from 192.186.1.8</div>
+                          <div class="text-muted small mt-1">5h ago</div>
+                        </div>
+                      </div>
+                    </a>
+                    <a href="#" class="list-group-item">
+                      <div class="row g-0 align-items-center">
+                        <div class="col-2">
+                          <i class="text-success" data-feather="user-plus"></i>
+                        </div>
+                        <div class="col-10">
+                          <div class="text-dark">New connection</div>
+                          <div class="text-muted small mt-1">
+                            Christina accepted your request.
+                          </div>
+                          <div class="text-muted small mt-1">14h ago</div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="dropdown-menu-footer">
+                    <a href="notifications.html" class="text-muted"
+                      >Show all notifications</a
+                    >
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-icon dropdown-toggle d-inline-block d-sm-none"
+                  href="#"
+                  data-bs-toggle="dropdown"
+                >
+                  <i class="align-middle" data-feather="settings"></i>
+                </a>
+
+                <a
+                  class="nav-link dropdown-toggle d-none d-sm-inline-block"
+                  href="#"
+                  data-bs-toggle="dropdown"
+                >
+                  <img
+                    src="assets/img/avatars/avatar.jpg"
+                    class="avatar img-fluid rounded me-1"
+                    alt="John Doe"
+                  />
+                  <span class="text-dark">John Doe</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-end">
+                  <a class="dropdown-item" href="userProfile.html"
+                    ><i class="align-middle me-1" data-feather="user"></i>
+                    Profile</a
+                  >
+                  <a class="dropdown-item" href="signIn.html"
+                    ><i class="align-middle me-1" data-feather="log-out"></i>
+                    Log out</a
+                  >
+                </div>
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        <main class="content">
+          <div class="container-fluid p-0">
+            <h1 class="mb-4 text-secondary">Welcome, John Doe!</h1>
+
+            <div class="row">
+              <div class="col-xl-6 col-xxl-5 d-flex">
+                <div class="w-100">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <div
+                        class="card stat-card py-3 d-flex flex-row justify-content-between align-items-center bg-primary"
+                      >
+                        <div class="card-body p-0 ms-3">
+                          <h5 class="card-title text-white">Customers</h5>
+                          <p class="card-text fs-1 text-white">1280</p>
+                        </div>
+                        <div
+                          class="icon-circle me-3 d-flex justify-content-center align-items-center rounded-circle bg-white"
+                        >
+                          <i class="bi bi-people text-primary"></i>
+                        </div>
+                      </div>
+                      <div
+                        class="card stat-card py-3 d-flex flex-row justify-content-between align-items-center bg-success"
+                      >
+                        <div class="card-body p-0 ms-3">
+                          <h5 class="card-title text-white">Messages Sent</h5>
+                          <p class="card-text fs-1 text-white">150</p>
+                        </div>
+                        <div
+                          class="icon-circle me-3 d-flex justify-content-center align-items-center rounded-circle bg-white"
+                        >
+                          <i class="bi bi-envelope text-success"></i>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div
+                        class="card stat-card py-3 d-flex flex-row justify-content-between align-items-center bg-warning"
+                      >
+                        <div class="card-body p-0 ms-3">
+                          <h5 class="card-title text-white">
+                            New Notifications
+                          </h5>
+                          <p class="card-text fs-1 text-white">4</p>
+                        </div>
+                        <div
+                          class="icon-circle me-3 d-flex justify-content-center align-items-center rounded-circle bg-white"
+                        >
+                          <i class="bi bi-bell text-warning"></i>
+                        </div>
+                      </div>
+                      <div
+                        class="card stat-card py-3 d-flex flex-row justify-content-between align-items-center bg-danger"
+                      >
+                        <div class="card-body p-0 ms-3">
+                          <h5 class="card-title text-white">Pending Tasks</h5>
+                          <p class="card-text fs-1 text-white">3</p>
+                        </div>
+                        <div
+                          class="icon-circle me-3 d-flex justify-content-center align-items-center rounded-circle bg-white"
+                        >
+                          <i class="bi bi-exclamation-circle text-danger"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xl-6 col-xxl-7">
+                <div class="card flex-fill w-100">
+                  <div class="card-header">
+                    <h5 class="card-title mb-0">Message Sending Statistics</h5>
+                  </div>
+                  <div class="card-body d-flex">
+                    <div class="align-self-center w-100">
+                      <div class="py-3">
+                        <div class="chart chart-xs">
+                          <canvas id="chartjs-pie"></canvas>
+                        </div>
+                      </div>
+
+                      <table class="table mb-0">
+                        <tbody>
+                          <tr>
+                            <td class="d-flex align-items-center gap-3">
+                              <div
+                                class="rounded-circle bg-success"
+                                style="width: 15px; height: 15px"
+                              ></div>
+                              Delivered
+                            </td>
+                            <td class="text-end">4306</td>
+                          </tr>
+                          <tr>
+                            <td class="d-flex align-items-center gap-3">
+                              <div
+                                class="rounded-circle bg-warning"
+                                style="width: 15px; height: 15px"
+                              ></div>
+                              Pending
+                            </td>
+                            <td class="text-end">3801</td>
+                          </tr>
+                          <tr>
+                            <td class="d-flex align-items-center gap-3">
+                              <div
+                                class="rounded-circle bg-danger"
+                                style="width: 15px; height: 15px"
+                              ></div>
+                              Failed
+                            </td>
+                            <td class="text-end">1689</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-12 col-md-6 col-xxl-3 d-flex order-2 order-xxl-3">
+                <div class="card flex-fill w-100">
+                  <div class="card-header">
+                    <h5 class="card-title mb-0">Messages by Channels</h5>
+                  </div>
+                  <div class="card-body d-flex">
+                    <div class="align-self-center w-100">
+                      <div class="py-3">
+                        <div class="chart chart-xs">
+                          <canvas id="chartjs-dashboard-pie"></canvas>
+                        </div>
+                      </div>
+
+                      <table class="table mb-0">
+                        <tbody>
+                          <tr>
+                            <td class="d-flex align-items-center gap-3">
+                              <div
+                                class="rounded-circle bg-primary"
+                                style="width: 15px; height: 15px"
+                              ></div>
+                              Email
+                            </td>
+                            <td class="text-end">4306</td>
+                          </tr>
+                          <tr>
+                            <td class="d-flex align-items-center gap-3">
+                              <div
+                                class="rounded-circle bg-warning"
+                                style="width: 15px; height: 15px"
+                              ></div>
+                              SMS
+                            </td>
+                            <td class="text-end">3801</td>
+                          </tr>
+                          <tr>
+                            <td class="d-flex align-items-center gap-3">
+                              <div
+                                class="rounded-circle bg-success"
+                                style="width: 15px; height: 15px"
+                              ></div>
+                              WhatsApp
+                            </td>
+                            <td class="text-end">1689</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-12 col-md-6 col-xxl-3 d-flex order-1 order-xxl-1">
+                <div class="card flex-fill">
+                  <div class="card-header">
+                    <h5 class="card-title mb-0">Calendar</h5>
+                  </div>
+                  <div class="card-body d-flex">
+                    <div class="align-self-center w-100">
+                      <div class="chart">
+                        <div id="datetimepicker-dashboard"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card" x-data="messageData()">
+              <div class="card-header"></div>
+              <div class="card-body">
+                <div
+                  class="d-flex flex-column flex-md-row justify-content-between gap-2"
+                >
+                  <h5 class="card-title">Sent Messages</h5>
+                  <div class="mb-3">
+                    <input
+                      type="text"
+                      placeholder="Search..."
+                      class="form-control w-auto"
+                      x-model="searchTerm"
+                      @input="filterMessages"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                      <thead>
+                        <tr>
+                          <th
+                            scope="col"
+                            class="cursor-pointer"
+                            @click="sort('date')"
+                          >
+                            Date
+                            <span
+                              x-show="sortKey === 'date'"
+                              x-text="sortOrder === 'asc' ? '▲' : '▼'"
+                              class="small"
+                            ></span>
+                          </th>
+                          <th
+                            scope="col"
+                            class="cursor-pointer"
+                            @click="sort('content')"
+                          >
+                            Content
+                            <span
+                              x-show="sortKey === 'content'"
+                              x-text="sortOrder === 'asc' ? '▲' : '▼'"
+                              class="small"
+                            ></span>
+                          </th>
+                          <th
+                            scope="col"
+                            class="cursor-pointer"
+                            @click="sort('channel')"
+                          >
+                            Channel
+                            <span
+                              x-show="sortKey === 'channel'"
+                              x-text="sortOrder === 'asc' ? '▲' : '▼'"
+                              class="small"
+                            ></span>
+                          </th>
+                          <th
+                            scope="col"
+                            class="cursor-pointer"
+                            @click="sort('recipient')"
+                          >
+                            Recipient
+                            <span
+                              x-show="sortKey === 'recipient'"
+                              x-text="sortOrder === 'asc' ? '▲' : '▼'"
+                              class="small"
+                            ></span>
+                          </th>
+                          <th
+                            scope="col"
+                            class="cursor-pointer"
+                            @click="sort('status')"
+                          >
+                            Status
+                            <span
+                              x-show="sortKey === 'status'"
+                              x-text="sortOrder === 'asc' ? '▲' : '▼'"
+                              class="small"
+                            ></span>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <template
+                          x-for="message in paginatedMessages()"
+                          :key="message.id"
+                        >
+                          <tr class="cursor-pointer">
+                            <td class="" x-text="message.date"></td>
+                            <td x-text="message.content"></td>
+                            <td class="" x-text="message.channel"></td>
+                            <td class="" x-text="message.recipient"></td>
+                            <td>
+                              <span
+                                :class="['badge', message.status === 'Delivered' ? 'bg-success' : message.status === 'Pending' ? 'bg-warning' : 'bg-danger']"
+                                x-text="message.status"
+                              ></span>
+                            </td>
+                          </tr>
+                        </template>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div
+                    class="d-flex flex-column flex-md-row justify-content-between mt-4"
+                  >
+                    <p x-show="filteredMessages.length &lt; 1">
+                      No entries found
+                    </p>
+                    <p x-show="filteredMessages.length > 0">
+                      Showing
+                      <span x-text="firstItem"></span>
+                      - <span x-text="lastItem"></span> of
+                      <span x-text="filteredMessages.length"></span> entries
+                    </p>
+                    <nav
+                      aria-label="Page navigation"
+                      x-show="filteredMessages.length > 10"
+                    >
+                      <ul
+                        class="pagination pagination-sm justify-content-center"
+                      >
+                        <li class="page-item">
+                          <button
+                            @click="goToPage(currentPage - 1)"
+                            :disabled="currentPage === 1"
+                            class="page-link"
+                          >
+                            <span aria-hidden="true">&laquo;</span>
+                          </button>
+                        </li>
+
+                        <template x-for="page in totalPages" :key="page">
+                          <li
+                            class="page-item"
+                            :class="{'active': currentPage === page}"
+                          >
+                            <button
+                              @click="goToPage(page)"
+                              class="page-link"
+                              x-text="page"
+                            ></button>
+                          </li>
+                        </template>
+
+                        <li class="page-item">
+                          <button
+                            @click="goToPage(currentPage + 1)"
+                            :disabled="currentPage === totalPages"
+                            class="page-link"
+                          >
+                            <span aria-hidden="true">&raquo;</span>
+                          </button>
+                        </li>
+                      </ul>
+                    </nav>
+                  </div>
+                </div>
+
+                <div
+                  class="modal fade"
+                  id="messageModal"
+                  tabindex="-1"
+                  aria-labelledby="messageModalLabel"
+                  aria-hidden="true"
+                >
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="messageModalLabel">
+                          Message Details
+                        </h5>
+                        <button
+                          type="button"
+                          class="btn-close"
+                          data-bs-dismiss="modal"
+                          aria-label="Close"
+                        ></button>
+                      </div>
+                      <div class="modal-body">
+                        <h6>Date:</h6>
+                        <p id="modalDate"></p>
+                        <h6>Content:</h6>
+                        <p id="modalContent"></p>
+                        <h6>Channel:</h6>
+                        <p id="modalChannel"></p>
+                        <h6>Recipient:</h6>
+                        <p id="modalRecipient"></p>
+                        <h6>Status:</h6>
+                        <p id="modalStatus"></p>
+                      </div>
+                      <div class="modal-footer">
+                        <button
+                          type="button"
+                          class="btn btn-secondary"
+                          data-bs-dismiss="modal"
+                        >
+                          Close
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <script src="assets/js/app.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        new Chart(document.getElementById("chartjs-pie"), {
+          type: "pie",
+          data: {
+            labels: ["Delivered", "Pending", "Failed"],
+            datasets: [
+              {
+                data: [4306, 3801, 1689],
+                backgroundColor: [
+                  window.theme.success,
+                  window.theme.warning,
+                  window.theme.danger,
+                ],
+                borderColor: "transparent",
+              },
+            ],
+          },
+          options: {
+            maintainAspectRatio: false,
+            legend: {
+              display: false,
+            },
+          },
+        });
+      });
+    </script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var date = new Date(Date.now() - 5 * 24 * 60 * 60 * 1000);
+        var defaultDate =
+          date.getUTCFullYear() +
+          "-" +
+          (date.getUTCMonth() + 1) +
+          "-" +
+          date.getUTCDate();
+        document.getElementById("datetimepicker-dashboard").flatpickr({
+          inline: true,
+          prevArrow: '<span title="Previous month">&laquo;</span>',
+          nextArrow: '<span title="Next month">&raquo;</span>',
+          defaultDate: defaultDate,
+        });
+      });
+    </script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        new Chart(document.getElementById("chartjs-dashboard-pie"), {
+          type: "pie",
+          data: {
+            labels: ["Email", "SMS", "WhatsApp"],
+            datasets: [
+              {
+                data: [4306, 3801, 1689],
+                backgroundColor: [
+                  window.theme.primary,
+                  window.theme.warning,
+                  window.theme.success,
+                ],
+                borderWidth: 5,
+              },
+            ],
+          },
+          options: {
+            responsive: !window.MSInputMethodContext,
+            maintainAspectRatio: false,
+            legend: {
+              display: false,
+            },
+            cutoutPercentage: 75,
+          },
+        });
+      });
+    </script>
+
+    <script>
+      function messageData() {
+        return {
+          messages: [
+            {
+              id: 1,
+              date: "2024-10-01",
+              content: "Hello, this is a test message!",
+              channel: "Email",
+              recipient: "Vanessa Tucker",
+              status: "Delivered",
+            },
+            {
+              id: 2,
+              date: "2024-08-02",
+              content: "Reminder: Your appointment is tomorrow.",
+              channel: "SMS",
+              recipient: "William Harris",
+              status: "Failed",
+            },
+            {
+              id: 3,
+              date: "2024-10-03",
+              content: "Let's meet at the usual place.",
+              channel: "WhatsApp",
+              recipient: "Sharon Lessman",
+              status: "Pending",
+            },
+            {
+              id: 4,
+              date: "2024-07-05",
+              content: "A warm welcome!",
+              channel: "Email",
+              recipient: "Vanessa Tucker",
+              status: "Failed",
+            },
+            {
+              id: 5,
+              date: "2024-04-19",
+              content: "Yo, dawg! What's good?",
+              channel: "SMS",
+              recipient: "William Harris",
+              status: "Pending",
+            },
+            {
+              id: 6,
+              date: "2024-09-16",
+              content: "Raincheck on dinner?",
+              channel: "WhatsApp",
+              recipient: "Sharon Lessman",
+              status: "Delivered",
+            },
+            {
+              id: 7,
+              date: "2024-05-07",
+              content: "Meeting by 18:00",
+              channel: "Email",
+              recipient: "Vanessa Tucker",
+              status: "Pending",
+            },
+            {
+              id: 8,
+              date: "2024-02-02",
+              content: "Let's have lunch at my place.",
+              channel: "SMS",
+              recipient: "William Harris",
+              status: "Delivered",
+            },
+            {
+              id: 9,
+              date: "2024-07-25",
+              content: "Still coming tomorrow?",
+              channel: "WhatsApp",
+              recipient: "Sharon Lessman",
+              status: "Failed",
+            },
+            {
+              id: 10,
+              date: "2024-02-16",
+              content: "Yep",
+              channel: "SMS",
+              recipient: "Sharon Lessman",
+              status: "Delivered",
+            },
+            {
+              id: 11,
+              date: "2024-11-04",
+              content: "No qualms.",
+              channel: "WhatsApp",
+              recipient: "William Harris",
+              status: "Pending",
+            },
+          ],
+
+          searchTerm: "",
+          itemsPerPage: 10,
+          currentPage: 1,
+          sortKey: "date",
+          sortOrder: "desc",
+
+          filterMessages() {
+            this.currentPage = 1; // Reset to first page on search
+          },
+
+          get filteredMessages() {
+            return this.messages.filter((message) => {
+              const searchLower = this.searchTerm.toLowerCase();
+              return (
+                message.date.toLowerCase().includes(searchLower) ||
+                message.content.toLowerCase().includes(searchLower) ||
+                message.channel.toLowerCase().includes(searchLower) ||
+                message.recipient.toLowerCase().includes(searchLower) ||
+                message.status.toLowerCase().includes(searchLower)
+              );
+            });
+          },
+
+          sort(column) {
+            if (this.sortKey === column) {
+              this.sortOrder = this.sortOrder === "asc" ? "desc" : "asc";
+            } else {
+              this.sortKey = column;
+              this.sortOrder = "asc";
+            }
+          },
+
+          sortedMessages() {
+            return this.filteredMessages.slice().sort((a, b) => {
+              let modifier = this.sortOrder === "asc" ? 1 : -1;
+              if (this.sortKey === "date") {
+                return new Date(a.date) > new Date(b.date)
+                  ? 1 * modifier
+                  : -1 * modifier;
+              } else if (this.sortKey === "content") {
+                return a.content > b.content ? 1 * modifier : -1 * modifier;
+              } else if (this.sortKey === "channel") {
+                return a.channel > b.channel ? 1 * modifier : -1 * modifier;
+              } else if (this.sortKey === "recipient") {
+                return a.recipient > b.recipient ? 1 * modifier : -1 * modifier;
+              } else {
+                return a.status > b.status ? 1 * modifier : -1 * modifier;
+              }
+            });
+          },
+
+          paginatedMessages() {
+            const start = (this.currentPage - 1) * this.itemsPerPage;
+            const end = this.currentPage * this.itemsPerPage;
+            return this.sortedMessages().slice(start, end);
+          },
+
+          get totalPages() {
+            return Math.ceil(this.filteredMessages.length / this.itemsPerPage);
+          },
+
+          goToPage(page) {
+            if (page > 0 && page <= this.totalPages) {
+              this.currentPage = page;
+            }
+          },
+
+          get firstItem() {
+            return (this.currentPage - 1) * this.itemsPerPage + 1;
+          },
+          get lastItem() {
+            const end = this.currentPage * this.itemsPerPage;
+            return end > this.filteredMessages.length
+              ? this.filteredMessages.length
+              : end;
+          },
+        };
+      }
+    </script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const rows = document.querySelectorAll(".table tbody tr");
+        rows.forEach((row) => {
+          row.addEventListener("click", function () {
+            const date = this.querySelector("td:nth-child(1)").textContent;
+            const content = this.querySelector("td:nth-child(2)").textContent;
+            const channel = this.querySelector("td:nth-child(3)").textContent;
+            const recipient = this.querySelector("td:nth-child(4)").textContent;
+            const status = this.querySelector("td:nth-child(5)").textContent;
+
+            document.getElementById("modalDate").textContent = date;
+            document.getElementById("modalContent").textContent = content;
+            document.getElementById("modalChannel").textContent = channel;
+            document.getElementById("modalRecipient").textContent = recipient;
+            document.getElementById("modalStatus").textContent = status;
+
+            const messageModal = new bootstrap.Modal(
+              document.getElementById("messageModal")
+            );
+            messageModal.show();
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
