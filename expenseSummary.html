@@ -6,7 +6,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
     />
-    <title>Sphere - User Dashboard</title>
+    <title>Sphere - Expense Summary</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -52,14 +52,14 @@
           </a>
 
           <ul class="sidebar-nav">
-            <li class="sidebar-item active">
+            <li class="sidebar-item">
               <a class="sidebar-link" href="userDashboard.html">
                 <i class="bi bi-speedometer2 align-middle"></i>
                 <span class="align-middle">Dashboard</span>
               </a>
             </li>
 
-            <li class="sidebar-item">
+            <li class="sidebar-item active">
               <a
                 data-bs-target="#expenses"
                 data-bs-toggle="collapse"
@@ -89,7 +89,7 @@
                     >Expense Labels</a
                   >
                 </li>
-                <li class="sidebar-item">
+                <li class="sidebar-item active">
                   <a class="sidebar-link" href="expenseSummary.html"
                     >Expense Summary</a
                   >
@@ -283,9 +283,31 @@
           </div>
         </nav>
 
-        <main class="content">
+        <main class="content" x-data="expenseSummary()">
           <div class="container-fluid p-0">
-            <h1 class="mb-4 text-secondary">Welcome, John Doe!</h1>
+            <h1 class="mb-4 text-secondary">Expense Summary</h1>
+
+            <form class="d-flex gap-2 mb-3">
+              <select
+                class="form-select w-auto bg-light"
+                x-model="selectedYear"
+                @change="updateChart"
+              >
+                <template x-for="year in sortedYears">
+                  <option :value="year" x-text="year"></option>
+                </template>
+              </select>
+
+              <select
+                class="form-select w-auto bg-light"
+                x-model="selectedMonth"
+                @change="updateChart"
+              >
+                <template x-for="month in months">
+                  <option :value="month" x-text="month"></option>
+                </template>
+              </select>
+            </form>
 
             <div class="row">
               <div class="col-xl-6 col-xxl-5 d-flex">
@@ -293,11 +315,14 @@
                   <div class="row">
                     <div class="col-sm-6">
                       <div
-                        class="card stat-card py-3 d-flex flex-row gap-2 justify-content-between align-items-center bg-danger"
+                        class="card stat-card py-3 d-flex flex-row justify-content-between align-items-center bg-danger"
                       >
                         <div class="card-body p-0 ms-3">
-                          <h5 class="card-title text-white">Outflow</h5>
-                          <p class="card-text fs-4 text-white">$1500</p>
+                          <h5 class="card-title text-white">Total Expenses</h5>
+                          <p
+                            class="card-text fs-4 text-white"
+                            x-text="'$' + totalExpenses"
+                          ></p>
                         </div>
                         <div
                           class="icon-circle me-3 d-flex justify-content-center align-items-center rounded-circle bg-white"
@@ -307,11 +332,16 @@
                       </div>
 
                       <div
-                        class="card stat-card py-3 d-flex flex-row justify-content-between align-items-center bg-success"
+                        class="card stat-card py-3 d-flex flex-row gap-2 justify-content-between align-items-center bg-success"
                       >
                         <div class="card-body p-0 ms-3">
-                          <h5 class="card-title text-white">Inflow</h5>
-                          <p class="card-text fs-4 text-white">$30000</p>
+                          <h5 class="card-title text-white">
+                            Remaining Budget
+                          </h5>
+                          <p
+                            class="card-text fs-4 text-white"
+                            x-text="'$' + remainingBudget"
+                          ></p>
                         </div>
                         <div
                           class="icon-circle me-3 d-flex justify-content-center align-items-center rounded-circle bg-white"
@@ -326,45 +356,35 @@
                         class="card stat-card py-3 d-flex flex-row justify-content-between align-items-center bg-primary"
                       >
                         <div class="card-body p-0 ms-3">
-                          <h5 class="card-title text-white">Clients</h5>
-                          <p class="card-text fs-4 text-white">1280</p>
+                          <h5 class="card-title text-white">Top Category</h5>
+                          <p
+                            class="card-text fs-4 text-white"
+                            x-text="topCategory.label"
+                          ></p>
                         </div>
                         <div
                           class="icon-circle me-3 d-flex justify-content-center align-items-center rounded-circle bg-white"
                         >
-                          <i class="bi bi-people text-primary"></i>
+                          <i class="bi bi-award text-primary"></i>
                         </div>
                       </div>
 
-                      <div
-                        class="card stat-card py-3 d-flex flex-row justify-content-between align-items-center bg-info"
-                      >
-                        <div class="card-body p-0 ms-3">
-                          <h5 class="card-title text-white">Staff</h5>
-                          <p class="card-text fs-4 text-white">150</p>
-                        </div>
-                        <div
-                          class="icon-circle me-3 d-flex justify-content-center align-items-center rounded-circle bg-white"
-                        >
-                          <i class="bi bi-person-badge text-info"></i>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="col-sm-6">
                       <div
                         class="card stat-card py-3 d-flex flex-row justify-content-between align-items-center bg-warning"
                       >
                         <div class="card-body p-0 ms-3">
                           <h5 class="card-title text-white">
-                            Outstanding Inflow
+                            Average Daily Spend
                           </h5>
-                          <p class="card-text fs-4 text-white">$750</p>
+                          <p
+                            class="card-text fs-4 text-white"
+                            x-text="'$' + averageDailySpend"
+                          ></p>
                         </div>
                         <div
                           class="icon-circle me-3 d-flex justify-content-center align-items-center rounded-circle bg-white"
                         >
-                          <i class="bi bi-exclamation-circle text-warning"></i>
+                          <i class="bi bi-graph-up text-warning"></i>
                         </div>
                       </div>
                     </div>
@@ -372,32 +392,41 @@
                 </div>
               </div>
 
-              <div x-data="inflowOutflowChart()" class="col-xl-6 col-xxl-7">
-                <div class="card">
+              <div class="col-xl-6 col-xxl-7">
+                <div class="card flex-fill w-100">
                   <div class="card-header">
-                    <h5 class="card-title">Outflow vs Inflow</h5>
-                    <div class="float-end">
-                      <form class="row g-2">
-                        <div class="col-auto">
-                          <select
-                            class="form-select form-select-sm bg-light border-0"
-                            x-model="selectedYear"
-                            @change="updateChart"
-                          >
-                            <template x-for="year in sortedYears">
-                              <option :value="year" x-text="year"></option>
-                            </template>
-                          </select>
-                        </div>
-                      </form>
-                    </div>
+                    <h5 class="card-title">Expense Distribution</h5>
                   </div>
-                  <div class="card-body">
-                    <div class="chart">
-                      <canvas
-                        id="chartjs-bar"
-                        class="chartjs-render-monitor"
-                      ></canvas>
+                  <div class="card-body d-flex">
+                    <div class="align-self-center w-100">
+                      <div class="py-3">
+                        <div class="chart chart-xs">
+                          <canvas id="chartjs-pie"></canvas>
+                        </div>
+                      </div>
+
+                      <table class="table mb-0">
+                        <tbody>
+                          <template
+                            x-for="category in categories"
+                            :key="category.key"
+                          >
+                            <tr>
+                              <td class="d-flex align-items-center gap-3">
+                                <div
+                                  class="rounded-circle"
+                                  :style="{ backgroundColor: category.color, width: '10px', height: '10px' }"
+                                ></div>
+                                <span x-text="category.label"></span>
+                              </td>
+                              <td
+                                class="text-end"
+                                x-text="'$' + totals[category.key]"
+                              ></td>
+                            </tr>
+                          </template>
+                        </tbody>
+                      </table>
                     </div>
                   </div>
                 </div>
@@ -412,112 +441,110 @@
 
     <script>
       document.addEventListener("alpine:init", () => {
-        Alpine.data("inflowOutflowChart", () => {
-          // Data for outflow and inflow across multiple years
+        Alpine.data("expenseSummary", () => {
           const data = {
             2020: {
-              outflow: [45, 52, 35, 50, 60, 40, 45, 70, 64, 80, 55, 85],
-              inflow: [30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85],
+              travel: [50, 42, 37, 68, 55, 49, 62, 75, 51, 84, 58, 73],
+              utilities: [38, 30, 49, 40, 52, 45, 67, 70, 62, 77, 83, 79],
+              foodAndDining: [45, 40, 35, 50, 55, 60, 48, 72, 66, 81, 64, 87],
+              entertainment: [42, 50, 38, 43, 59, 57, 60, 63, 70, 76, 79, 80],
+              officeSupplies: [33, 37, 41, 55, 48, 56, 62, 69, 74, 78, 83, 81],
             },
             2021: {
-              outflow: [55, 60, 30, 52, 58, 43, 50, 65, 59, 78, 47, 72],
-              inflow: [40, 45, 50, 60, 65, 70, 75, 80, 85, 90, 95, 100],
+              travel: [60, 58, 43, 39, 70, 51, 67, 80, 75, 82, 64, 89],
+              utilities: [32, 44, 48, 50, 41, 60, 63, 68, 75, 78, 81, 83],
+              foodAndDining: [35, 38, 42, 55, 58, 62, 65, 70, 74, 77, 80, 85],
+              entertainment: [30, 36, 49, 52, 45, 61, 64, 67, 72, 79, 81, 88],
+              officeSupplies: [39, 42, 47, 55, 52, 60, 68, 70, 74, 76, 84, 86],
             },
             2022: {
-              outflow: [60, 58, 28, 45, 55, 47, 48, 67, 63, 74, 52, 70],
-              inflow: [45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100],
+              travel: [48, 40, 50, 64, 53, 55, 67, 75, 72, 81, 62, 88],
+              utilities: [45, 38, 42, 48, 54, 59, 65, 69, 74, 79, 82, 85],
+              foodAndDining: [34, 43, 47, 53, 57, 63, 67, 71, 76, 78, 81, 86],
+              entertainment: [37, 40, 44, 52, 56, 62, 65, 68, 73, 77, 80, 84],
+              officeSupplies: [41, 46, 49, 53, 58, 63, 66, 71, 74, 78, 83, 87],
             },
             2023: {
-              outflow: [62, 57, 33, 49, 53, 50, 46, 66, 61, 76, 49, 73],
-              inflow: [50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 105],
+              travel: [52, 44, 40, 56, 63, 51, 65, 72, 77, 79, 83, 86],
+              utilities: [36, 39, 45, 49, 53, 60, 62, 68, 73, 76, 79, 82],
+              foodAndDining: [40, 42, 48, 52, 58, 62, 66, 71, 74, 78, 80, 84],
+              entertainment: [38, 46, 50, 55, 57, 60, 67, 69, 72, 76, 81, 85],
+              officeSupplies: [35, 43, 48, 52, 56, 61, 65, 68, 73, 77, 82, 86],
             },
             2024: {
-              outflow: [59, 55, 36, 54, 57, 42, 51, 69, 65, 72, 50, 77],
-              inflow: [55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 105, 110],
+              travel: [44, 49, 55, 58, 62, 66, 70, 74, 78, 82, 85, 88],
+              utilities: [40, 44, 47, 52, 57, 62, 66, 69, 74, 79, 82, 87],
+              foodAndDining: [38, 43, 46, 53, 59, 64, 67, 72, 76, 80, 84, 89],
+              entertainment: [42, 47, 50, 55, 58, 62, 67, 70, 74, 78, 81, 85],
+              officeSupplies: [39, 41, 48, 52, 56, 61, 64, 68, 73, 77, 81, 86],
             },
           };
+
+          const categories = [
+            { key: "travel", label: "Travel", color: window.theme.success },
+            {
+              key: "utilities",
+              label: "Utilities",
+              color: window.theme.primary,
+            },
+            {
+              key: "foodAndDining",
+              label: "Food & Dining",
+              color: window.theme.warning,
+            },
+            {
+              key: "entertainment",
+              label: "Entertainment",
+              color: window.theme.info,
+            },
+            {
+              key: "officeSupplies",
+              label: "Office Supplies",
+              color: window.theme.danger,
+            },
+          ];
+
+          const months = [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December",
+          ];
 
           const sortedYears = Object.keys(data)
             .map(Number)
             .sort((a, b) => b - a);
-
-          // Default to most recent year
           const recentYear = sortedYears[0];
-
           let chart;
 
-          function initializeChart() {
-            const ctx = document.getElementById("chartjs-bar").getContext("2d");
+          function initializeChart(selectedYear, monthIndex) {
+            const ctx = document.getElementById("chartjs-pie").getContext("2d");
             chart = new Chart(ctx, {
-              type: "bar",
+              type: "pie",
               data: {
-                labels: [
-                  "Jan",
-                  "Feb",
-                  "Mar",
-                  "Apr",
-                  "May",
-                  "Jun",
-                  "Jul",
-                  "Aug",
-                  "Sep",
-                  "Oct",
-                  "Nov",
-                  "Dec",
-                ],
+                labels: categories.map((c) => c.label),
                 datasets: [
                   {
-                    label: "Outflow",
-                    backgroundColor: "#ff6384",
-                    borderColor: "#ff6384",
-                    data: data[recentYear].outflow,
-                    barPercentage: 0.75,
-                    categoryPercentage: 0.5,
-                  },
-                  {
-                    label: "Inflow",
-                    backgroundColor: "#36a2eb",
-                    borderColor: "#36a2eb",
-                    data: data[recentYear].inflow,
-                    barPercentage: 0.75,
-                    categoryPercentage: 0.5,
+                    data: categories.map(
+                      (c) => data[selectedYear][c.key][monthIndex]
+                    ),
+                    backgroundColor: categories.map((c) => c.color),
+                    borderColor: "transparent",
                   },
                 ],
               },
               options: {
                 maintainAspectRatio: false,
                 legend: {
-                  position: "bottom",
-                  labels: {
-                    boxWidth: 20,
-                    padding: 20,
-                  },
-                },
-                scales: {
-                  yAxes: [
-                    {
-                      stacked: false,
-                      ticks: {
-                        stepSize: 20,
-                      },
-                    },
-                  ],
-                  xAxes: [
-                    {
-                      stacked: false,
-                    },
-                  ],
-                },
-                tooltips: {
-                  enabled: true,
-                  callbacks: {
-                    label: function (tooltipItem, data) {
-                      const value = tooltipItem.value;
-                      const label =
-                        tooltipItem.datasetIndex === 0 ? "Outflow" : "Inflow";
-                      return `${label}: $${value}`;
-                    },
-                  },
+                  display: false,
                 },
               },
             });
@@ -525,17 +552,63 @@
 
           return {
             data,
-            selectedYear: recentYear,
+            categories,
             sortedYears,
+            months,
+            selectedYear: recentYear,
+            selectedMonth: months[0],
+            monthlyBudget: 500,
+            get currentMonthIndex() {
+              return this.months.indexOf(this.selectedMonth);
+            },
+            get totals() {
+              return Object.fromEntries(
+                this.categories.map((c) => [
+                  c.key,
+                  data[this.selectedYear][c.key][this.currentMonthIndex],
+                ])
+              );
+            },
+            get totalExpenses() {
+              return Object.values(this.totals).reduce(
+                (sum, value) => sum + value,
+                0
+              );
+            },
+            get remainingBudget() {
+              return this.monthlyBudget - this.totalExpenses;
+            },
+            get topCategory() {
+              const maxKey = Object.entries(this.totals).reduce(
+                (max, [key, value]) =>
+                  value > (max.value || 0) ? { key, value } : max,
+                {}
+              );
+              return (
+                this.categories.find((c) => c.key === maxKey.key) || {
+                  label: "None",
+                  value: 0,
+                }
+              );
+            },
+            get averageDailySpend() {
+              const daysInMonth = new Date(
+                this.selectedYear,
+                this.currentMonthIndex + 1,
+                0
+              ).getDate();
+              return (this.totalExpenses / daysInMonth).toFixed(2);
+            },
             init() {
-              initializeChart();
+              this.updateChart();
             },
             updateChart() {
-              if (chart) {
-                chart.data.datasets[0].data =
-                  this.data[this.selectedYear].outflow;
-                chart.data.datasets[1].data =
-                  this.data[this.selectedYear].inflow;
+              if (!chart) {
+                initializeChart(this.selectedYear, this.currentMonthIndex);
+              } else {
+                chart.data.datasets[0].data = categories.map(
+                  (c) => data[this.selectedYear][c.key][this.currentMonthIndex]
+                );
                 chart.update();
               }
             },

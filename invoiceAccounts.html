@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+    />
+    <title>Sphere - Invoice Accounts</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link href="assets/css/app.css" rel="stylesheet" />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav id="sidebar" class="sidebar js-sidebar">
+        <div class="sidebar-content js-simplebar">
+          <a class="sidebar-brand mb-3" href="userDashboard.html">
+            <i class="bi bi-globe align-middle"></i>
+            <span class="align-middle ms-1">Sphere</span>
+          </a>
+
+          <ul class="sidebar-nav">
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="userDashboard.html">
+                <i class="bi bi-speedometer2 align-middle"></i>
+                <span class="align-middle">Dashboard</span>
+              </a>
+            </li>
+
+            <li class="sidebar-item">
+              <a
+                data-bs-target="#expenses"
+                data-bs-toggle="collapse"
+                class="sidebar-link collapsed"
+                aria-expanded="false"
+              >
+                <i class="bi bi-wallet2 align-middle"></i>
+                <span class="align-middle">Expenses</span>
+              </a>
+              <ul
+                id="expenses"
+                class="sidebar-dropdown list-unstyled collapse"
+                data-bs-parent="#sidebar"
+              >
+                <li class="sidebar-item">
+                  <a class="sidebar-link" href="expenses.html"
+                    >Manage Expenses</a
+                  >
+                </li>
+                <li class="sidebar-item">
+                  <a class="sidebar-link" href="expenseCategories.html"
+                    >Expense Categories</a
+                  >
+                </li>
+                <li class="sidebar-item">
+                  <a class="sidebar-link" href="expenseLabels.html"
+                    >Expense Labels</a
+                  >
+                </li>
+                <li class="sidebar-item">
+                  <a class="sidebar-link" href="expenseSummary.html"
+                    >Expense Summary</a
+                  >
+                </li>
+              </ul>
+            </li>
+
+            <li class="sidebar-item active">
+              <a
+                data-bs-target="#invoices"
+                data-bs-toggle="collapse"
+                class="sidebar-link collapsed"
+                aria-expanded="false"
+              >
+                <i class="bi bi-file-earmark-text align-middle"></i>
+                <span class="align-middle">Invoices</span>
+              </a>
+              <ul
+                id="invoices"
+                class="sidebar-dropdown list-unstyled collapse"
+                data-bs-parent="#sidebar"
+              >
+                <li class="sidebar-item">
+                  <a class="sidebar-link" href="invoices.html"
+                    >Manage Invoices</a
+                  >
+                </li>
+                <li class="sidebar-item active">
+                  <a class="sidebar-link" href="invoiceAccounts.html"
+                    >Invoice Accounts</a
+                  >
+                </li>
+                <li class="sidebar-item">
+                  <a class="sidebar-link" href="invoiceSummary.html"
+                    >Invoice Summary</a
+                  >
+                </li>
+              </ul>
+            </li>
+
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="tasks.html">
+                <i class="bi bi-list-task align-middle"></i>
+                <span class="align-middle">Tasks</span>
+              </a>
+            </li>
+
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="clients.html">
+                <i class="bi bi-people align-middle"></i>
+                <span class="align-middle">Clients</span>
+              </a>
+            </li>
+
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="staff.html">
+                <i class="bi bi-person-badge align-middle"></i>
+                <span class="align-middle">Staff</span>
+              </a>
+            </li>
+
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="userProfile.html">
+                <i class="align-middle" data-feather="user"></i>
+                <span class="align-middle">Profile</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="main">
+        <nav class="navbar navbar-expand navbar-light navbar-bg">
+          <a class="sidebar-toggle js-sidebar-toggle">
+            <i class="hamburger align-self-center"></i>
+          </a>
+
+          <div class="navbar-collapse collapse">
+            <ul class="navbar-nav navbar-align">
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-icon dropdown-toggle"
+                  href="#"
+                  id="alertsDropdown"
+                  data-bs-toggle="dropdown"
+                >
+                  <div class="position-relative">
+                    <i class="align-middle" data-feather="bell"></i>
+                    <span class="indicator">4</span>
+                  </div>
+                </a>
+                <div
+                  class="dropdown-menu dropdown-menu-lg dropdown-menu-end py-0"
+                  aria-labelledby="alertsDropdown"
+                >
+                  <div class="dropdown-menu-header">4 New Notifications</div>
+                  <div class="list-group">
+                    <a href="#" class="list-group-item">
+                      <div class="row g-0 align-items-center">
+                        <div class="col-2">
+                          <i
+                            class="text-danger"
+                            data-feather="alert-circle"
+                          ></i>
+                        </div>
+                        <div class="col-10">
+                          <div class="text-dark">Update completed</div>
+                          <div class="text-muted small mt-1">
+                            Restart server 12 to complete the update.
+                          </div>
+                          <div class="text-muted small mt-1">30m ago</div>
+                        </div>
+                      </div>
+                    </a>
+                    <a href="#" class="list-group-item">
+                      <div class="row g-0 align-items-center">
+                        <div class="col-2">
+                          <i class="text-warning" data-feather="bell"></i>
+                        </div>
+                        <div class="col-10">
+                          <div class="text-dark">Lorem ipsum</div>
+                          <div class="text-muted small mt-1">
+                            Aliquam ex eros, imperdiet vulputate hendrerit et.
+                          </div>
+                          <div class="text-muted small mt-1">2h ago</div>
+                        </div>
+                      </div>
+                    </a>
+                    <a href="#" class="list-group-item">
+                      <div class="row g-0 align-items-center">
+                        <div class="col-2">
+                          <i class="text-primary" data-feather="home"></i>
+                        </div>
+                        <div class="col-10">
+                          <div class="text-dark">Login from 192.186.1.8</div>
+                          <div class="text-muted small mt-1">5h ago</div>
+                        </div>
+                      </div>
+                    </a>
+                    <a href="#" class="list-group-item">
+                      <div class="row g-0 align-items-center">
+                        <div class="col-2">
+                          <i class="text-success" data-feather="user-plus"></i>
+                        </div>
+                        <div class="col-10">
+                          <div class="text-dark">New connection</div>
+                          <div class="text-muted small mt-1">
+                            Christina accepted your request.
+                          </div>
+                          <div class="text-muted small mt-1">14h ago</div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="dropdown-menu-footer">
+                    <a href="notifications.html" class="text-muted"
+                      >Show all notifications</a
+                    >
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-icon dropdown-toggle d-inline-block d-sm-none"
+                  href="#"
+                  data-bs-toggle="dropdown"
+                >
+                  <i class="align-middle" data-feather="settings"></i>
+                </a>
+
+                <a
+                  class="nav-link dropdown-toggle d-none d-sm-inline-block"
+                  href="#"
+                  data-bs-toggle="dropdown"
+                >
+                  <i class="align-middle" data-feather="user"></i>
+                  <span class="text-dark align-middle">John Doe</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-end">
+                  <a class="dropdown-item" href="userProfile.html"
+                    ><i class="align-middle me-1" data-feather="user"></i>
+                    Profile</a
+                  >
+                  <a class="dropdown-item" href="signIn.html"
+                    ><i class="align-middle me-1" data-feather="log-out"></i>
+                    Log out</a
+                  >
+                </div>
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        <main class="content" x-data="invoiceAccountManager()">
+          <div class="container-fluid p-0">
+            <h1 class="mb-4 text-secondary">Invoice Accounts</h1>
+
+            <button
+              class="btn btn-primary mb-3"
+              @click="showAddAccountModal = true"
+            >
+              Add Account
+            </button>
+
+            <!-- Accounts Table -->
+            <div class="card">
+              <div class="card-header">
+                <h5 class="card-title">Invoice Accounts</h5>
+              </div>
+
+              <div class="card-body">
+                <div>
+                  <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                      <thead>
+                        <tr>
+                          <th
+                            scope="col"
+                            class="cursor-pointer"
+                            @click="sort('bankName')"
+                          >
+                            Bank Name
+                            <span
+                              x-show="sortKey === 'bankName'"
+                              x-text="sortOrder === 'asc' ? '▲' : '▼'"
+                              class="small"
+                            ></span>
+                          </th>
+                          <th
+                            scope="col"
+                            class="cursor-pointer"
+                            @click="sort('accountName')"
+                          >
+                            Account Name
+                            <span
+                              x-show="sortKey === 'accountName'"
+                              x-text="sortOrder === 'asc' ? '▲' : '▼'"
+                              class="small"
+                            ></span>
+                          </th>
+                          <th
+                            scope="col"
+                            class="cursor-pointer"
+                            @click="sort('accountNumber')"
+                          >
+                            Account Number
+                            <span
+                              x-show="sortKey === 'accountNumber'"
+                              x-text="sortOrder === 'asc' ? '▲' : '▼'"
+                              class="small"
+                            ></span>
+                          </th>
+                          <th
+                            scope="col"
+                            class="cursor-pointer"
+                            @click="sort('totalInflow')"
+                          >
+                            Total Inflow
+                            <span
+                              x-show="sortKey === 'totalInflow'"
+                              x-text="sortOrder === 'asc' ? '▲' : '▼'"
+                              class="small"
+                            ></span>
+                          </th>
+                          <th scope="col">Actions</th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        <template
+                          x-for="(account, index) in paginatedAccounts()"
+                          :key="account.id"
+                        >
+                          <tr>
+                            <td
+                              x-text="account.bankName"
+                              class="text-nowrap overflow-hidden text-truncate"
+                              style="max-width: 110px"
+                            ></td>
+                            <td
+                              x-text="account.accountName"
+                              class="text-nowrap overflow-hidden text-truncate"
+                              style="max-width: 110px"
+                            ></td>
+                            <td x-text="account.accountNumber"></td>
+                            <td x-text="`$${account.totalInflow}`"></td>
+                            <td>
+                              <span class="d-flex gap-2">
+                                <button
+                                  class="btn btn-warning btn-sm text-dark"
+                                  @click="openEditModal(account)"
+                                >
+                                  <i class="bi bi-pencil-square"></i>
+                                </button>
+                                <button
+                                  class="btn btn-sm btn-danger"
+                                  @click="showDeleteAccountModal = true; selectedAccount = account"
+                                >
+                                  <i class="bi bi-trash"></i></button
+                              ></span>
+                            </td>
+                          </tr>
+                        </template>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div
+                    class="d-flex flex-column flex-md-row justify-content-between mt-4"
+                  >
+                    <p x-show="accounts.length &lt; 1">No entries found</p>
+                    <p x-show="accounts.length > 0">
+                      Showing
+                      <span x-text="firstItem"></span>
+                      - <span x-text="lastItem"></span> of
+                      <span x-text="accounts.length"></span> entries
+                    </p>
+                    <nav
+                      aria-label="Page navigation"
+                      x-show="accounts.length > 10"
+                    >
+                      <ul
+                        class="pagination pagination-sm justify-content-center"
+                      >
+                        <li class="page-item">
+                          <button
+                            @click="goToPage(currentPage - 1)"
+                            :disabled="currentPage === 1"
+                            class="page-link"
+                          >
+                            <span aria-hidden="true">&laquo;</span>
+                          </button>
+                        </li>
+
+                        <template x-for="page in totalPages" :key="page">
+                          <li
+                            class="page-item"
+                            :class="{'active': currentPage === page}"
+                          >
+                            <button
+                              @click="goToPage(page)"
+                              class="page-link"
+                              x-text="page"
+                            ></button>
+                          </li>
+                        </template>
+
+                        <li class="page-item">
+                          <button
+                            @click="goToPage(currentPage + 1)"
+                            :disabled="currentPage === totalPages"
+                            class="page-link"
+                          >
+                            <span aria-hidden="true">&raquo;</span>
+                          </button>
+                        </li>
+                      </ul>
+                    </nav>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Add Account Modal -->
+            <div
+              class="modal fade"
+              :class="{ 'show d-block': showAddAccountModal}"
+              tabindex="-1"
+              aria-labelledby="addAccountModalLabel"
+              aria-hidden="true"
+              style="background-color: rgba(0, 0, 0, 0.5)"
+            >
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="addAccountModalLabel">
+                      Add New Account
+                    </h5>
+                  </div>
+                  <form @submit.prevent="addAccount($event)">
+                    <div class="modal-body">
+                      <div class="mb-3">
+                        <label for="bankName" class="form-label"
+                          >Bank Name</label
+                        >
+                        <select
+                          class="form-select"
+                          id="bankName"
+                          x-model="newAccount.bankName"
+                          required
+                        >
+                          <option value="" disabled selected>
+                            Select a bank
+                          </option>
+                          <option value="Access Bank">Access Bank</option>
+                          <option value="Ecobank">Ecobank</option>
+                          <option value="Fidelity Bank">Fidelity Bank</option>
+                          <option value="First Bank of Nigeria">
+                            First Bank of Nigeria
+                          </option>
+                          <option value="GTBank">GTBank</option>
+                          <option value="Polaris Bank">Polaris Bank</option>
+                          <option value="Sterling Bank">Sterling Bank</option>
+                          <option value="UBA">UBA</option>
+                          <option value="Union Bank">Union Bank</option>
+                          <option value="Zenith Bank">Zenith Bank</option>
+                        </select>
+                      </div>
+
+                      <div class="mb-3">
+                        <label for="accountNumber" class="form-label"
+                          >Account Number</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="accountNumber"
+                          x-model="newAccount.accountNumber"
+                          required
+                        />
+                      </div>
+
+                      <div class="mb-3">
+                        <label for="accountName" class="form-label"
+                          >Account Name</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="accountName"
+                          x-model="newAccount.accountName"
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    <div class="modal-footer">
+                      <button
+                        type="reset"
+                        class="btn btn-secondary"
+                        @click="showAddAccountModal = false"
+                      >
+                        Cancel
+                      </button>
+                      <button type="submit" class="btn btn-success">
+                        Add Account
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+            <!-- Edit Account Modal -->
+            <div
+              class="modal fade"
+              :class="{ 'show d-block': showEditAccountModal }"
+              tabindex="-1"
+              aria-labelledby="editAccountModalLabel"
+              aria-hidden="true"
+              style="background-color: rgba(0, 0, 0, 0.5)"
+            >
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="editAccountModalLabel">
+                      Edit Account Details
+                    </h5>
+                  </div>
+
+                  <form @submit.prevent="updateAccount()">
+                    <div class="modal-body">
+                      <div class="mb-3">
+                        <label for="bankName" class="form-label"
+                          >Bank Name</label
+                        >
+                        <select
+                          class="form-select"
+                          id="bankName"
+                          x-model="tempAccount.bankName"
+                          required
+                        >
+                          <option value="" disabled selected>
+                            Select a bank
+                          </option>
+                          <option value="Access Bank">Access Bank</option>
+                          <option value="Ecobank">Ecobank</option>
+                          <option value="Fidelity Bank">Fidelity Bank</option>
+                          <option value="First Bank of Nigeria">
+                            First Bank of Nigeria
+                          </option>
+                          <option value="GTBank">GTBank</option>
+                          <option value="Polaris Bank">Polaris Bank</option>
+                          <option value="Sterling Bank">Sterling Bank</option>
+                          <option value="UBA">UBA</option>
+                          <option value="Union Bank">Union Bank</option>
+                          <option value="Zenith Bank">Zenith Bank</option>
+                        </select>
+                      </div>
+
+                      <div class="mb-3">
+                        <label for="accountNumber" class="form-label"
+                          >Account Number</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="accountNumber"
+                          x-model="tempAccount.accountNumber"
+                          required
+                        />
+                      </div>
+
+                      <div class="mb-3">
+                        <label for="accountName" class="form-label"
+                          >Account Name</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="accountName"
+                          x-model="tempAccount.accountName"
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        @click="resetAccount(); showEditAccountModal = false"
+                      >
+                        Cancel
+                      </button>
+                      <button type="submit" class="btn btn-success">
+                        Save Changes
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+            <!-- Delete Account Modal -->
+            <div
+              class="modal fade"
+              :class="{ 'show d-block': showDeleteAccountModal}"
+              tabindex="-1"
+              aria-labelledby="deleteAccountModalLabel"
+              aria-hidden="true"
+              style="background-color: rgba(0, 0, 0, 0.5)"
+            >
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="deleteAccountModalLabel">
+                      Delete Account
+                    </h5>
+                  </div>
+                  <div class="modal-body">
+                    <p>
+                      Are you sure you want to delete the account "<span
+                        x-text="selectedAccount.accountName"
+                      ></span
+                      >"?
+                    </p>
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      data-bs-dismiss="modal"
+                      @click="showDeleteAccountModal = false; selectedAccount = null"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-danger"
+                      @click="deleteAccount"
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <script src="assets/js/app.js"></script>
+
+    <script>
+      function invoiceAccountManager() {
+        return {
+          accounts: [
+            {
+              id: "AC001",
+              bankName: "First Bank of Nigeria",
+              accountNumber: "1234567890",
+              accountName: "Main Account",
+              totalInflow: 1500000,
+            },
+            {
+              id: "AC002",
+              bankName: "GTBank",
+              accountNumber: "0987654321",
+              accountName: "Savings Account",
+              totalInflow: 750000,
+            },
+            {
+              id: "AC003",
+              bankName: "Access Bank",
+              accountNumber: "1122334455",
+              accountName: "Expense Account",
+              totalInflow: 2000000,
+            },
+            {
+              id: "AC004",
+              bankName: "Zenith Bank",
+              accountNumber: "5566778899",
+              accountName: "Operations Account",
+              totalInflow: 0,
+            },
+            {
+              id: "AC005",
+              bankName: "UBA",
+              accountNumber: "6677889900",
+              accountName: "Payroll Account",
+              totalInflow: 39000,
+            },
+          ],
+
+          sortKey: "bankName",
+          sortOrder: "asc",
+          currentPage: 1,
+          itemsPerPage: 10,
+          selectedAccount: null,
+          tempAccount: {},
+          showAddAccountModal: false,
+          showEditAccountModal: false,
+          showDeleteAccountModal: false,
+
+          newAccount: {
+            bankName: "",
+            accountNumber: "",
+            accountName: "",
+            totalInflow: 0,
+          },
+
+          addAccount(event) {
+            this.accounts.push({
+              ...this.newAccount,
+              id: `AC${String(this.accounts.length + 1).padStart(3, "0")}`,
+            });
+
+            event.target.reset();
+            this.showAddAccountModal = false;
+          },
+
+          openEditModal(account) {
+            this.selectedAccount = account;
+            this.tempAccount = JSON.parse(JSON.stringify(account));
+            this.showEditAccountModal = true;
+          },
+
+          // Update the original account with the tempAccount values
+          updateAccount() {
+            Object.assign(this.selectedAccount, this.tempAccount);
+            this.showEditAccountModal = false;
+            this.selectedAccount = null;
+          },
+
+          // Reset the tempAccount to match the original selectedAccount
+          resetAccount() {
+            this.tempAccount = {};
+            this.selectedAccount = null;
+          },
+
+          deleteAccount() {
+            this.accounts = this.accounts.filter(
+              (account) => account.id !== this.selectedAccount.id
+            );
+            this.selectedAccount = null;
+            this.showDeleteAccountModal = false;
+          },
+
+          sort(column) {
+            if (this.sortKey === column) {
+              this.sortOrder = this.sortOrder === "asc" ? "desc" : "asc";
+            } else {
+              this.sortKey = column;
+              this.sortOrder = "asc";
+            }
+          },
+
+          sortedAccounts() {
+            return this.accounts.slice().sort((a, b) => {
+              let modifier = this.sortOrder === "asc" ? 1 : -1;
+              if (this.sortKey === "bankName") {
+                return a.bankName > b.bankName ? 1 * modifier : -1 * modifier;
+              } else if (this.sortKey === "accountName") {
+                return a.accountName > b.accountName
+                  ? 1 * modifier
+                  : -1 * modifier;
+              } else if (this.sortKey === "accountNumber") {
+                return a.accountNumber > b.accountNumber
+                  ? 1 * modifier
+                  : -1 * modifier;
+              } else if (this.sortKey === "totalInflow") {
+                return (a.totalInflow > b.totalInflow ? 1 : -1) * modifier;
+              }
+            });
+          },
+
+          paginatedAccounts() {
+            const start = (this.currentPage - 1) * this.itemsPerPage;
+            const end = this.currentPage * this.itemsPerPage;
+            return this.sortedAccounts().slice(start, end);
+          },
+
+          get totalPages() {
+            return Math.ceil(this.accounts.length / this.itemsPerPage);
+          },
+
+          goToPage(page) {
+            if (page > 0 && page <= this.totalPages) {
+              this.currentPage = page;
+            }
+          },
+
+          get firstItem() {
+            return (this.currentPage - 1) * this.itemsPerPage + 1;
+          },
+
+          get lastItem() {
+            const end = this.currentPage * this.itemsPerPage;
+            return end > this.accounts.length ? this.accounts.length : end;
+          },
+        };
+      }
+    </script>
+  </body>
+</html>

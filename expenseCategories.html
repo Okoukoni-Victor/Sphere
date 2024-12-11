@@ -138,36 +138,6 @@
             </li>
 
             <li class="sidebar-item">
-              <a
-                data-bs-target="#messaging"
-                data-bs-toggle="collapse"
-                class="sidebar-link collapsed"
-                aria-expanded="false"
-              >
-                <i class="bi bi-envelope align-middle"></i>
-                <span class="align-middle">Messaging</span>
-              </a>
-              <ul
-                id="messaging"
-                class="sidebar-dropdown list-unstyled collapse"
-                data-bs-parent="#sidebar"
-              >
-                <li class="sidebar-item">
-                  <a class="sidebar-link" href="composeMessage.html">Compose</a>
-                </li>
-                <li class="sidebar-item">
-                  <a class="sidebar-link" href="messageInbox.html">Inbox</a>
-                </li>
-                <li class="sidebar-item">
-                  <a class="sidebar-link" href="sentMessages.html">Sent</a>
-                </li>
-                <li class="sidebar-item">
-                  <a class="sidebar-link" href="messageSummary.html">Summary</a>
-                </li>
-              </ul>
-            </li>
-
-            <li class="sidebar-item">
               <a class="sidebar-link" href="userProfile.html">
                 <i class="align-middle" data-feather="user"></i>
                 <span class="align-middle">Profile</span>
@@ -626,7 +596,7 @@
                     <button
                       type="button"
                       class="btn btn-danger"
-                      @click="deleteCategory()"
+                      @click="deleteCategory"
                     >
                       Delete
                     </button>

@@ -1,0 +1,1409 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+    />
+    <title>Sphere - Invoices</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link href="assets/css/app.css" rel="stylesheet" />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav id="sidebar" class="sidebar js-sidebar">
+        <div class="sidebar-content js-simplebar">
+          <a class="sidebar-brand mb-3" href="userDashboard.html">
+            <i class="bi bi-globe align-middle"></i>
+            <span class="align-middle ms-1">Sphere</span>
+          </a>
+
+          <ul class="sidebar-nav">
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="userDashboard.html">
+                <i class="bi bi-speedometer2 align-middle"></i>
+                <span class="align-middle">Dashboard</span>
+              </a>
+            </li>
+
+            <li class="sidebar-item">
+              <a
+                data-bs-target="#expenses"
+                data-bs-toggle="collapse"
+                class="sidebar-link collapsed"
+                aria-expanded="false"
+              >
+                <i class="bi bi-wallet2 align-middle"></i>
+                <span class="align-middle">Expenses</span>
+              </a>
+              <ul
+                id="expenses"
+                class="sidebar-dropdown list-unstyled collapse"
+                data-bs-parent="#sidebar"
+              >
+                <li class="sidebar-item">
+                  <a class="sidebar-link" href="expenses.html"
+                    >Manage Expenses</a
+                  >
+                </li>
+                <li class="sidebar-item">
+                  <a class="sidebar-link" href="expenseCategories.html"
+                    >Expense Categories</a
+                  >
+                </li>
+                <li class="sidebar-item">
+                  <a class="sidebar-link" href="expenseLabels.html"
+                    >Expense Labels</a
+                  >
+                </li>
+                <li class="sidebar-item">
+                  <a class="sidebar-link" href="expenseSummary.html"
+                    >Expense Summary</a
+                  >
+                </li>
+              </ul>
+            </li>
+
+            <li class="sidebar-item active">
+              <a
+                data-bs-target="#invoices"
+                data-bs-toggle="collapse"
+                class="sidebar-link collapsed"
+                aria-expanded="false"
+              >
+                <i class="bi bi-file-earmark-text align-middle"></i>
+                <span class="align-middle">Invoices</span>
+              </a>
+              <ul
+                id="invoices"
+                class="sidebar-dropdown list-unstyled collapse"
+                data-bs-parent="#sidebar"
+              >
+                <li class="sidebar-item active">
+                  <a class="sidebar-link" href="invoices.html"
+                    >Manage Invoices</a
+                  >
+                </li>
+                <li class="sidebar-item">
+                  <a class="sidebar-link" href="invoiceAccounts.html"
+                    >Invoice Accounts</a
+                  >
+                </li>
+                <li class="sidebar-item">
+                  <a class="sidebar-link" href="invoiceSummary.html"
+                    >Invoice Summary</a
+                  >
+                </li>
+              </ul>
+            </li>
+
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="tasks.html">
+                <i class="bi bi-list-task align-middle"></i>
+                <span class="align-middle">Tasks</span>
+              </a>
+            </li>
+
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="clients.html">
+                <i class="bi bi-people align-middle"></i>
+                <span class="align-middle">Clients</span>
+              </a>
+            </li>
+
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="staff.html">
+                <i class="bi bi-person-badge align-middle"></i>
+                <span class="align-middle">Staff</span>
+              </a>
+            </li>
+
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="userProfile.html">
+                <i class="align-middle" data-feather="user"></i>
+                <span class="align-middle">Profile</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="main">
+        <nav class="navbar navbar-expand navbar-light navbar-bg">
+          <a class="sidebar-toggle js-sidebar-toggle">
+            <i class="hamburger align-self-center"></i>
+          </a>
+
+          <div class="navbar-collapse collapse">
+            <ul class="navbar-nav navbar-align">
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-icon dropdown-toggle"
+                  href="#"
+                  id="alertsDropdown"
+                  data-bs-toggle="dropdown"
+                >
+                  <div class="position-relative">
+                    <i class="align-middle" data-feather="bell"></i>
+                    <span class="indicator">4</span>
+                  </div>
+                </a>
+                <div
+                  class="dropdown-menu dropdown-menu-lg dropdown-menu-end py-0"
+                  aria-labelledby="alertsDropdown"
+                >
+                  <div class="dropdown-menu-header">4 New Notifications</div>
+                  <div class="list-group">
+                    <a href="#" class="list-group-item">
+                      <div class="row g-0 align-items-center">
+                        <div class="col-2">
+                          <i
+                            class="text-danger"
+                            data-feather="alert-circle"
+                          ></i>
+                        </div>
+                        <div class="col-10">
+                          <div class="text-dark">Update completed</div>
+                          <div class="text-muted small mt-1">
+                            Restart server 12 to complete the update.
+                          </div>
+                          <div class="text-muted small mt-1">30m ago</div>
+                        </div>
+                      </div>
+                    </a>
+                    <a href="#" class="list-group-item">
+                      <div class="row g-0 align-items-center">
+                        <div class="col-2">
+                          <i class="text-warning" data-feather="bell"></i>
+                        </div>
+                        <div class="col-10">
+                          <div class="text-dark">Lorem ipsum</div>
+                          <div class="text-muted small mt-1">
+                            Aliquam ex eros, imperdiet vulputate hendrerit et.
+                          </div>
+                          <div class="text-muted small mt-1">2h ago</div>
+                        </div>
+                      </div>
+                    </a>
+                    <a href="#" class="list-group-item">
+                      <div class="row g-0 align-items-center">
+                        <div class="col-2">
+                          <i class="text-primary" data-feather="home"></i>
+                        </div>
+                        <div class="col-10">
+                          <div class="text-dark">Login from 192.186.1.8</div>
+                          <div class="text-muted small mt-1">5h ago</div>
+                        </div>
+                      </div>
+                    </a>
+                    <a href="#" class="list-group-item">
+                      <div class="row g-0 align-items-center">
+                        <div class="col-2">
+                          <i class="text-success" data-feather="user-plus"></i>
+                        </div>
+                        <div class="col-10">
+                          <div class="text-dark">New connection</div>
+                          <div class="text-muted small mt-1">
+                            Christina accepted your request.
+                          </div>
+                          <div class="text-muted small mt-1">14h ago</div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="dropdown-menu-footer">
+                    <a href="notifications.html" class="text-muted"
+                      >Show all notifications</a
+                    >
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-icon dropdown-toggle d-inline-block d-sm-none"
+                  href="#"
+                  data-bs-toggle="dropdown"
+                >
+                  <i class="align-middle" data-feather="settings"></i>
+                </a>
+
+                <a
+                  class="nav-link dropdown-toggle d-none d-sm-inline-block"
+                  href="#"
+                  data-bs-toggle="dropdown"
+                >
+                  <i class="align-middle" data-feather="user"></i>
+                  <span class="text-dark align-middle">John Doe</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-end">
+                  <a class="dropdown-item" href="userProfile.html"
+                    ><i class="align-middle me-1" data-feather="user"></i>
+                    Profile</a
+                  >
+                  <a class="dropdown-item" href="signIn.html"
+                    ><i class="align-middle me-1" data-feather="log-out"></i>
+                    Log out</a
+                  >
+                </div>
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        <main class="content" x-data="invoiceManager()">
+          <div class="container-fluid p-0">
+            <h1 class="mb-4 text-secondary">Manage Invoices</h1>
+
+            <div
+              class="d-flex flex-column flex-sm-row justify-content-between mb-3"
+            >
+              <button
+                class="btn btn-primary mb-md-0 mb-3 align-self-md-center align-self-start"
+                @click="showCreateInvoiceModal = true"
+              >
+                Create Invoice
+              </button>
+
+              <!-- Filters -->
+              <div class="d-flex flex-column flex-sm-row gap-2">
+                <select class="form-select" x-model="filters.status">
+                  <option value="">All</option>
+                  <option value="Paid">Paid</option>
+                  <option value="Not Paid">Not Paid</option>
+                  <option value="Part-Paid">Part Paid</option>
+                </select>
+
+                <select class="form-select" x-model="filters.client">
+                  <option value="">All Clients</option>
+                  <template x-for="client in clients" :key="client.id">
+                    <option :value="client.name" x-text="client.name"></option>
+                  </template>
+                </select>
+                <input
+                  type="date"
+                  class="form-control"
+                  x-model="filters.date"
+                />
+              </div>
+            </div>
+
+            <!-- Invoice Table -->
+            <div class="card">
+              <div
+                class="card-header d-flex justify-content-between align-items-center"
+              >
+                <h5 class="card-title">Invoices</h5>
+                <div class="mb-3">
+                  <input
+                    type="text"
+                    class="form-control w-auto"
+                    placeholder="Search Invoice by Number"
+                    x-model="searchQuery"
+                    @input="filterInvoices"
+                  />
+                </div>
+              </div>
+
+              <div class="card-body">
+                <div>
+                  <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                      <thead>
+                        <tr>
+                          <th
+                            scope="col"
+                            class="cursor-pointer"
+                            @click="sort('id')"
+                          >
+                            ID
+                            <span
+                              x-show="sortKey === 'id'"
+                              x-text="sortOrder === 'asc' ? '▲' : '▼'"
+                              class="small"
+                            ></span>
+                          </th>
+                          <th
+                            scope="col"
+                            class="cursor-pointer d-none d-md-table-cell"
+                            @click="sort('date')"
+                          >
+                            Date Issued
+                            <span
+                              x-show="sortKey === 'date'"
+                              x-text="sortOrder === 'asc' ? '▲' : '▼'"
+                              class="small"
+                            ></span>
+                          </th>
+                          <th
+                            scope="col"
+                            class="cursor-pointer"
+                            @click="sort('invoiceAmount')"
+                          >
+                            Amount
+                            <span
+                              x-show="sortKey === 'invoiceAmount'"
+                              x-text="sortOrder === 'asc' ? '▲' : '▼'"
+                              class="small"
+                            ></span>
+                          </th>
+                          <th
+                            scope="col"
+                            class="cursor-pointer"
+                            @click="sort('amountPaid')"
+                          >
+                            Paid
+                            <span
+                              x-show="sortKey === 'amountPaid'"
+                              x-text="sortOrder === 'asc' ? '▲' : '▼'"
+                              class="small"
+                            ></span>
+                          </th>
+                          <th
+                            scope="col"
+                            class="cursor-pointer d-none d-md-table-cell"
+                            @click="sort('client')"
+                          >
+                            Client
+                            <span
+                              x-show="sortKey === 'client'"
+                              x-text="sortOrder === 'asc' ? '▲' : '▼'"
+                              class="small"
+                            ></span>
+                          </th>
+                          <th
+                            scope="col"
+                            class="cursor-pointer"
+                            @click="sort('status')"
+                          >
+                            Status
+                            <span
+                              x-show="sortKey === 'status'"
+                              x-text="sortOrder === 'asc' ? '▲' : '▼'"
+                              class="small"
+                            ></span>
+                          </th>
+                          <th scope="col">Actions</th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        <template
+                          x-for="(invoice, index) in paginatedInvoices()"
+                          :key="invoice.id"
+                        >
+                          <tr>
+                            <td x-text="invoice.id"></td>
+                            <td
+                              x-text="invoice.dateOfIssuance"
+                              class="d-none d-md-table-cell"
+                            ></td>
+                            <td x-text="`$${invoice.invoiceAmount}`"></td>
+                            <td x-text="`$${invoice.amountPaid}`"></td>
+                            <td
+                              x-text="invoice.client"
+                              class="d-none d-md-table-cell"
+                            ></td>
+                            <td>
+                              <span
+                                :class="{
+                                  'badge bg-success': invoice.status === 'Paid',
+                                  'badge bg-warning': invoice.status === 'Part-Paid',
+                                  'badge bg-danger': invoice.status === 'Not Paid'
+                                }"
+                                x-text="invoice.status"
+                              ></span>
+                            </td>
+                            <td>
+                              <span class="d-flex gap-2">
+                                <button
+                                  class="btn btn-sm btn-info"
+                                  @click="showViewInvoiceModal = true; selectedInvoice = invoice"
+                                >
+                                  <i class="bi bi-eye"></i>
+                                </button>
+                                <button
+                                  class="btn btn-warning btn-sm text-dark"
+                                  @click="openEditModal(invoice)"
+                                >
+                                  <i class="bi bi-pencil-square"></i>
+                                </button>
+                                <button
+                                  class="btn btn-sm btn-danger"
+                                  @click="showDeleteInvoiceModal = true; selectedInvoice = invoice"
+                                >
+                                  <i class="bi bi-trash"></i></button
+                              ></span>
+                            </td>
+                          </tr>
+                        </template>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div
+                    class="d-flex flex-column flex-md-row justify-content-between mt-4"
+                  >
+                    <p x-show="filteredInvoices.length &lt; 1">
+                      No entries found
+                    </p>
+                    <p x-show="filteredInvoices.length > 0">
+                      Showing
+                      <span x-text="firstItem"></span>
+                      - <span x-text="lastItem"></span> of
+                      <span x-text="filteredInvoices.length"></span> entries
+                    </p>
+                    <nav
+                      aria-label="Page navigation"
+                      x-show="filteredInvoices.length > 10"
+                    >
+                      <ul
+                        class="pagination pagination-sm justify-content-center"
+                      >
+                        <li class="page-item">
+                          <button
+                            @click="goToPage(currentPage - 1)"
+                            :disabled="currentPage === 1"
+                            class="page-link"
+                          >
+                            <span aria-hidden="true">&laquo;</span>
+                          </button>
+                        </li>
+
+                        <template x-for="page in totalPages" :key="page">
+                          <li
+                            class="page-item"
+                            :class="{'active': currentPage === page}"
+                          >
+                            <button
+                              @click="goToPage(page)"
+                              class="page-link"
+                              x-text="page"
+                            ></button>
+                          </li>
+                        </template>
+
+                        <li class="page-item">
+                          <button
+                            @click="goToPage(currentPage + 1)"
+                            :disabled="currentPage === totalPages"
+                            class="page-link"
+                          >
+                            <span aria-hidden="true">&raquo;</span>
+                          </button>
+                        </li>
+                      </ul>
+                    </nav>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Create Invoice Modal -->
+            <div
+              class="modal fade"
+              :class="{ 'show d-block': showCreateInvoiceModal}"
+              tabindex="-1"
+              aria-labelledby="createInvoiceModalLabel"
+              aria-hidden="true"
+              style="background-color: rgba(0, 0, 0, 0.5)"
+            >
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="createInvoiceModalLabel">
+                      Create Invoice
+                    </h5>
+                  </div>
+                  <form @submit.prevent="createInvoices($event)">
+                    <div class="modal-body">
+                      <template
+                        x-for="(item, index) in invoiceItems"
+                        :key="index"
+                      >
+                        <div class="mb-5">
+                          <div class="mb-3">
+                            <label for="client" class="form-label"
+                              >Client</label
+                            >
+                            <select
+                              class="form-select"
+                              x-model="item.client"
+                              name="client"
+                              required
+                            >
+                              <option value="">Select Client</option>
+                              <template
+                                x-for="client in clients"
+                                :key="client.id"
+                              >
+                                <option
+                                  :value="client.name"
+                                  x-text="client.name"
+                                ></option>
+                              </template>
+                            </select>
+                          </div>
+
+                          <!-- Multi-select dropdown for accounts -->
+                          <div class="mb-3">
+                            <label for="accounts" class="form-label"
+                              >Associate Accounts</label
+                            >
+                            <select
+                              class="form-select"
+                              multiple
+                              x-model="item.accounts"
+                              id="accounts"
+                              required
+                            >
+                              <template
+                                x-for="account in accounts"
+                                :key="account.id"
+                              >
+                                <option
+                                  :value="account.accountName"
+                                  x-text="account.accountName"
+                                ></option>
+                              </template>
+                            </select>
+                          </div>
+
+                          <div class="mb-3">
+                            <label for="invoiceDescription" class="form-label"
+                              >Description</label
+                            >
+                            <input
+                              type="text"
+                              class="form-control"
+                              x-model="item.description"
+                              placeholder="Description"
+                              required
+                            />
+                          </div>
+
+                          <div class="mb-3">
+                            <label for="invoiceQuantity" class="form-label"
+                              >Quantity</label
+                            >
+                            <input
+                              type="number"
+                              class="form-control"
+                              x-model="item.quantity"
+                              placeholder="Quantity"
+                              required
+                            />
+                          </div>
+
+                          <div class="mb-3">
+                            <label for="invoiceAmount" class="form-label"
+                              >Amount</label
+                            >
+                            <input
+                              type="number"
+                              class="form-control"
+                              x-model="item.invoiceAmount"
+                              placeholder="Amount"
+                              required
+                            />
+                          </div>
+
+                          <div class="mb-3">
+                            <label for="vat" class="form-label"
+                              >VAT (Optional)</label
+                            >
+                            <input
+                              class="form-control"
+                              x-model="item.vat"
+                              placeholder="VAT"
+                            />
+                          </div>
+
+                          <button
+                            x-show="invoiceItems.length > 1"
+                            type="button"
+                            class="btn btn-danger"
+                            @click="removeInvoiceItem(index)"
+                          >
+                            <i class="bi bi-trash"></i>
+                          </button></div
+                      ></template>
+                      <button
+                        type="button"
+                        class="btn btn-primary"
+                        @click="addInvoiceItem"
+                      >
+                        Add Item
+                      </button>
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="reset"
+                        class="btn btn-secondary"
+                        @click="showCreateInvoiceModal = false"
+                      >
+                        Cancel
+                      </button>
+                      <button type="submit" class="btn btn-success">
+                        Submit
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+            <!-- View Invoice Modal -->
+            <div
+              class="modal fade"
+              :class="{ 'show d-block': showViewInvoiceModal}"
+              tabindex="-1"
+              aria-labelledby="viewInvoiceModalLabel"
+              aria-hidden="true"
+              style="background-color: rgba(0, 0, 0, 0.5)"
+            >
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="viewInvoiceModalLabel">
+                      Invoice Details
+                    </h5>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                      @click="showViewInvoiceModal = false; selectedInvoice = null"
+                    ></button>
+                  </div>
+                  <div class="modal-body">
+                    <p>
+                      <strong>Invoice Number:</strong>
+                      <span x-text="selectedInvoice.id"></span>
+                    </p>
+                    <p>
+                      <strong>Date Issued:</strong>
+                      <span x-text="selectedInvoice.dateOfIssuance"></span>
+                    </p>
+                    <p>
+                      <strong>Description:</strong>
+                      <span x-text="selectedInvoice.description"></span>
+                    </p>
+                    <p>
+                      <strong>Quantity:</strong>
+                      <span x-text="selectedInvoice.quantity"></span>
+                    </p>
+                    <p>
+                      <strong>Amount:</strong>
+                      <span
+                        x-text="`$${selectedInvoice.invoiceAmount} (VAT: ${selectedInvoice.vat})`"
+                      ></span>
+                    </p>
+                    <p>
+                      <strong>Status:</strong>
+                      <span x-text="selectedInvoice.status"></span>
+                    </p>
+                    <p x-show="selectedInvoice.dateOfPayment">
+                      <strong>Date of Payment:</strong>
+                      <span x-text="selectedInvoice.dateOfPayment"></span>
+                    </p>
+                    <p x-show="selectedInvoice.amountPaid">
+                      <strong>Amount Paid:</strong>
+                      <span x-text="`$${selectedInvoice.amountPaid}`"></span>
+                    </p>
+                    <p x-show="selectedInvoice.paymentChannel">
+                      <strong>Channel:</strong>
+                      <span x-text="selectedInvoice.paymentChannel"></span>
+                    </p>
+                    <p>
+                      <strong>Client:</strong>
+                      <span x-text="selectedInvoice.client"></span>
+                    </p>
+                    <div>
+                      <p><strong>Accounts:</strong></p>
+                      <ul>
+                        <template
+                          x-for="account in selectedInvoice.accounts"
+                          :key="account"
+                        >
+                          <li x-text="account"></li>
+                        </template>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Edit Invoice Modal -->
+            <div
+              class="modal fade"
+              :class="{ 'show d-block': showEditInvoiceModal }"
+              tabindex="-1"
+              aria-labelledby="editInvoiceModalLabel"
+              aria-hidden="true"
+              style="background-color: rgba(0, 0, 0, 0.5)"
+            >
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="editInvoiceModalLabel">
+                      Edit Invoice Details
+                    </h5>
+                  </div>
+
+                  <form @submit.prevent="updateInvoice()">
+                    <div class="modal-body">
+                      <!-- Edit Invoice Details -->
+                      <div class="mb-3">
+                        <label for="editInvoiceDescription" class="form-label"
+                          >Description</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="editInvoiceDescription"
+                          x-model="tempInvoice.description"
+                          required
+                        />
+                      </div>
+
+                      <div class="mb-3">
+                        <label for="editInvoiceQuantity" class="form-label"
+                          >Quantity</label
+                        >
+                        <input
+                          type="number"
+                          class="form-control"
+                          id="editInvoiceQuantity"
+                          x-model="tempInvoice.quantity"
+                          required
+                        />
+                      </div>
+
+                      <div class="mb-3">
+                        <label for="editInvoiceAmount" class="form-label"
+                          >Amount</label
+                        >
+                        <input
+                          type="number"
+                          class="form-control"
+                          id="editInvoiceAmount"
+                          x-model="tempInvoice.invoiceAmount"
+                          required
+                        />
+                      </div>
+
+                      <!-- Edit Payment Information -->
+                      <h5 class="my-4">Payment Information</h5>
+
+                      <div class="mb-3">
+                        <label for="editPaymentAmount" class="form-label"
+                          >Amount Paid</label
+                        >
+                        <input
+                          type="number"
+                          class="form-control"
+                          id="editPaymentAmount"
+                          x-model="tempInvoice.amountPaid"
+                          required
+                        />
+                      </div>
+
+                      <div class="mb-3">
+                        <label for="editPaymentDate" class="form-label"
+                          >Payment Date</label
+                        >
+                        <input
+                          type="date"
+                          class="form-control"
+                          id="editPaymentDate"
+                          x-model="tempInvoice.dateOfPayment"
+                        />
+                      </div>
+
+                      <div class="mb-3">
+                        <label for="editPaymentChannel" class="form-label"
+                          >Payment Channel</label
+                        >
+                        <select
+                          class="form-select"
+                          id="editPaymentChannel"
+                          x-model="tempInvoice.paymentChannel"
+                        >
+                          <option value="Online">Online</option>
+                          <option value="Bank Transfer">Bank Transfer</option>
+                          <option value="Cheque">Cheque</option>
+                          <option value="Cash">Cash</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        @click="resetInvoice(); showEditInvoiceModal = false"
+                      >
+                        Cancel
+                      </button>
+                      <button type="submit" class="btn btn-success">
+                        Save Changes
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+            <!-- Delete Invoice Modal -->
+            <div
+              class="modal fade"
+              :class="{ 'show d-block': showDeleteInvoiceModal}"
+              tabindex="-1"
+              aria-labelledby="deleteInvoiceModalLabel"
+              aria-hidden="true"
+              style="background-color: rgba(0, 0, 0, 0.5)"
+            >
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="deleteInvoiceModalLabel">
+                      Delete Invoice
+                    </h5>
+                  </div>
+                  <div class="modal-body">
+                    <p>Are you sure you want to delete this invoice?</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      data-bs-dismiss="modal"
+                      @click="showDeleteInvoiceModal = false; selectedInvoice = null"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-danger"
+                      @click="deleteInvoice"
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <script src="assets/js/app.js"></script>
+
+    <script>
+      function invoiceManager() {
+        return {
+          invoices: [
+            {
+              id: "INV001",
+              description: "Website Development",
+              invoiceAmount: 150000,
+              vat: 7500,
+              client: "Tech Solutions Ltd",
+              status: "Paid",
+              dateOfIssuance: "2024-11-01",
+              dateOfPayment: "2024-11-05",
+              amountPaid: 150000,
+              paymentChannel: "Bank Transfer",
+              accounts: ["Main Account", "Savings Account"],
+              quantity: 1,
+            },
+            {
+              id: "INV002",
+              description: "Monthly Hosting",
+              invoiceAmount: 12000,
+              vat: 0,
+              client: "Web Hosting Co.",
+              status: "Not Paid",
+              dateOfIssuance: "2024-11-10",
+              dateOfPayment: "",
+              amountPaid: 0,
+              paymentChannel: "",
+              accounts: ["Expense Account"],
+              quantity: 3,
+            },
+            {
+              id: "INV003",
+              description: "Digital Marketing Services",
+              invoiceAmount: 80000,
+              vat: 4000,
+              client: "AdPro Inc.",
+              status: "Part-Paid",
+              dateOfIssuance: "2024-11-15",
+              dateOfPayment: "2024-11-20",
+              amountPaid: 40000,
+              paymentChannel: "Online",
+              accounts: ["Operations Account", "Payroll Account"],
+              quantity: 2,
+            },
+            {
+              id: "INV004",
+              description: "SEO Optimization",
+              invoiceAmount: 50000,
+              vat: 2500,
+              client: "Startup Hub",
+              status: "Paid",
+              dateOfIssuance: "2024-11-05",
+              dateOfPayment: "2024-11-08",
+              amountPaid: 50000,
+              paymentChannel: "Cheque",
+              accounts: ["Savings Account"],
+              quantity: 1,
+            },
+            {
+              id: "INV005",
+              description: "Graphic Design Package",
+              invoiceAmount: 25000,
+              vat: 1250,
+              client: "Creative Minds Ltd",
+              status: "Not Paid",
+              dateOfIssuance: "2024-11-20",
+              dateOfPayment: "",
+              amountPaid: 0,
+              paymentChannel: "",
+              accounts: ["Expense Account"],
+              quantity: 4,
+            },
+            {
+              id: "INV006",
+              description: "Social Media Management",
+              invoiceAmount: 30000,
+              vat: 1500,
+              client: "Enterprise Solutions",
+              status: "Part-Paid",
+              dateOfIssuance: "2024-11-25",
+              dateOfPayment: "2024-11-30",
+              amountPaid: 15000,
+              paymentChannel: "Bank Transfer",
+              accounts: ["Operations Account", "Payroll Account"],
+              quantity: 3,
+            },
+            {
+              id: "INV007",
+              description: "Consultation Services",
+              invoiceAmount: 40000,
+              vat: 2000,
+              client: "Visionary Ltd",
+              status: "Paid",
+              dateOfIssuance: "2024-11-02",
+              dateOfPayment: "2024-11-06",
+              amountPaid: 40000,
+              paymentChannel: "Cash",
+              accounts: ["Main Account"],
+              quantity: 1,
+            },
+            {
+              id: "INV008",
+              description: "Custom Software Development",
+              invoiceAmount: 500000,
+              vat: 25000,
+              client: "Tech Solutions Ltd",
+              status: "Not Paid",
+              dateOfIssuance: "2024-11-03",
+              dateOfPayment: "",
+              amountPaid: 0,
+              paymentChannel: "",
+              accounts: ["Main Account", "Savings Account"],
+              quantity: 2,
+            },
+            {
+              id: "INV009",
+              description: "Photography Services",
+              invoiceAmount: 80000,
+              vat: 0,
+              client: "AdPro Inc.",
+              status: "Paid",
+              dateOfIssuance: "2024-11-12",
+              dateOfPayment: "2024-11-15",
+              amountPaid: 80000,
+              paymentChannel: "Online",
+              accounts: ["Operations Account"],
+              quantity: 5,
+            },
+            {
+              id: "INV010",
+              description: "Content Writing",
+              invoiceAmount: 20000,
+              vat: 1000,
+              client: "Creative Minds Ltd",
+              status: "Part-Paid",
+              dateOfIssuance: "2024-11-18",
+              dateOfPayment: "2024-11-22",
+              amountPaid: 10000,
+              paymentChannel: "Cheque",
+              accounts: ["Expense Account", "Payroll Account"],
+              quantity: 3,
+            },
+            {
+              id: "INV011",
+              description: "E-commerce Integration",
+              invoiceAmount: 120000,
+              vat: 6000,
+              client: "Startup Hub",
+              status: "Paid",
+              dateOfIssuance: "2024-11-06",
+              dateOfPayment: "2024-11-10",
+              amountPaid: 120000,
+              paymentChannel: "Bank Transfer",
+              accounts: ["Savings Account"],
+              quantity: 1,
+            },
+            {
+              id: "INV012",
+              description: "Mobile App Development",
+              invoiceAmount: 300000,
+              vat: 15000,
+              client: "Enterprise Solutions",
+              status: "Not Paid",
+              dateOfIssuance: "2024-11-08",
+              dateOfPayment: "",
+              amountPaid: 0,
+              paymentChannel: "",
+              accounts: ["Expense Account"],
+              quantity: 2,
+            },
+            {
+              id: "INV013",
+              description: "Domain Registration",
+              invoiceAmount: 5000,
+              vat: 0,
+              client: "Web Hosting Co.",
+              status: "Paid",
+              dateOfIssuance: "2024-11-07",
+              dateOfPayment: "2024-11-10",
+              amountPaid: 5000,
+              paymentChannel: "Cash",
+              accounts: ["Expense Account"],
+              quantity: 4,
+            },
+            {
+              id: "INV014",
+              description: "Cybersecurity Audit",
+              invoiceAmount: 70000,
+              vat: 3500,
+              client: "Visionary Ltd",
+              status: "Not Paid",
+              dateOfIssuance: "2024-11-09",
+              dateOfPayment: "",
+              amountPaid: 0,
+              paymentChannel: "",
+              accounts: ["Operations Account", "Main Account"],
+              quantity: 2,
+            },
+            {
+              id: "INV015",
+              description: "Maintenance Service",
+              invoiceAmount: 6000,
+              vat: 300,
+              client: "Creative Minds Ltd",
+              status: "Part-Paid",
+              dateOfIssuance: "2024-11-22",
+              dateOfPayment: "2024-11-25",
+              amountPaid: 3000,
+              paymentChannel: "Online",
+              accounts: ["Payroll Account"],
+              quantity: 3,
+            },
+          ],
+          clients: [
+            {
+              id: "CLI001",
+              name: "Tech Solutions Ltd",
+              email: "contact@techsolutions.com",
+              phone: "+234-700-123-4567",
+              address: "12 Technology Avenue, Lagos, Nigeria",
+            },
+            {
+              id: "CLI002",
+              name: "Web Hosting Co.",
+              email: "support@webhosting.com",
+              phone: "+234-701-987-6543",
+              address: "23 Cloud Street, Ikeja, Lagos, Nigeria",
+            },
+            {
+              id: "CLI003",
+              name: "AdPro Inc.",
+              email: "hello@adpro.com",
+              phone: "+234-702-333-1122",
+              address: "15 Creative Lane, Victoria Island, Lagos, Nigeria",
+            },
+            {
+              id: "CLI004",
+              name: "Startup Hub",
+              email: "info@startuphub.com",
+              phone: "+234-703-444-2233",
+              address: "7 Innovate Crescent, Yaba, Lagos, Nigeria",
+            },
+            {
+              id: "CLI005",
+              name: "Creative Minds Ltd",
+              email: "team@creativeminds.com",
+              phone: "+234-704-555-3344",
+              address: "88 Imagination Road, Surulere, Lagos, Nigeria",
+            },
+            {
+              id: "CLI006",
+              name: "Enterprise Solutions",
+              email: "sales@enterprisesolutions.com",
+              phone: "+234-707-888-6677",
+              address: "2 Business Park, Alausa, Lagos, Nigeria",
+            },
+            {
+              id: "CLI007",
+              name: "Visionary Ltd",
+              email: "support@visionary.com",
+              phone: "+234-706-777-5566",
+              address: "30 Vision Drive, Ajah, Lagos, Nigeria",
+            },
+          ],
+          accounts: [
+            {
+              id: "AC001",
+              bankName: "First Bank of Nigeria",
+              accountNumber: "1234567890",
+              accountName: "Main Account",
+            },
+            {
+              id: "AC002",
+              bankName: "GTBank",
+              accountNumber: "0987654321",
+              accountName: "Savings Account",
+            },
+            {
+              id: "AC003",
+              bankName: "Access Bank",
+              accountNumber: "1122334455",
+              accountName: "Expense Account",
+            },
+            {
+              id: "AC004",
+              bankName: "Zenith Bank",
+              accountNumber: "5566778899",
+              accountName: "Operations Account",
+            },
+            {
+              id: "AC005",
+              bankName: "UBA",
+              accountNumber: "6677889900",
+              accountName: "Payroll Account",
+            },
+          ],
+          invoiceItems: [
+            {
+              client: "",
+              accounts: [],
+              description: "",
+              quantity: 1,
+              invoiceAmount: 0,
+              vat: 0,
+            },
+          ],
+          sortKey: "date",
+          sortOrder: "desc",
+          filters: { status: "", client: "", date: "" },
+          searchQuery: "",
+          currentPage: 1,
+          itemsPerPage: 10,
+          selectedInvoice: null,
+          tempInvoice: {},
+          showCreateInvoiceModal: false,
+          showViewInvoiceModal: false,
+          showEditInvoiceModal: false,
+          showDeleteInvoiceModal: false,
+
+          addInvoiceItem() {
+            this.invoiceItems.push({
+              client: "",
+              accounts: [],
+              description: "",
+              quantity: 1,
+              invoiceAmount: 0,
+              vat: 0,
+            });
+          },
+
+          removeInvoiceItem(index) {
+            this.invoiceItems.splice(index, 1);
+          },
+
+          createInvoices(event) {
+            this.invoiceItems.forEach((item) => {
+              const newInvoice = {
+                id: `INV${String(this.invoices.length + 1).padStart(3, "0")}`,
+                dateOfIssuance: new Date().toISOString().split("T")[0], // Today's date in YYYY-MM-DD format
+                description: item.description,
+                quantity: item.quantity,
+                invoiceAmount: item.invoiceAmount,
+                vat: item.vat || 0, // Set VAT to 0 if not provided
+                status: "Not Paid", // Default status for a new invoice
+                dateOfPayment: "",
+                amountPaid: 0,
+                paymentChannel: "",
+                client: item.client,
+                accounts: item.accounts,
+              };
+
+              this.invoices.push(newInvoice);
+            });
+
+            event.target.reset();
+            this.showCreateInvoiceModal = false;
+            this.invoiceItems = [
+              {
+                client: "",
+                accounts: [],
+                description: "",
+                quantity: 1,
+                invoiceAmount: 0,
+                vat: 0,
+              },
+            ];
+          },
+
+          openEditModal(invoice) {
+            this.selectedInvoice = invoice;
+            this.tempInvoice = JSON.parse(JSON.stringify(invoice));
+            this.showEditInvoiceModal = true;
+          },
+
+          // Update the original invoice with the tempInvoice values
+          updateInvoice() {
+            Object.assign(this.selectedInvoice, this.tempInvoice);
+            this.showEditInvoiceModal = false;
+            this.selectedInvoice = null;
+          },
+
+          // Reset the tempInvoice to match the original selectedInvoice
+          resetInvoice() {
+            this.tempInvoice = {};
+            this.selectedInvoice = null;
+          },
+
+          deleteInvoice() {
+            if (
+              this.selectedInvoice.status === "Paid" ||
+              this.selectedInvoice.status === "Part-Paid"
+            ) {
+              alert("Paid or partially paid invoices cannot be deleted.");
+            } else {
+              this.invoices = this.invoices.filter(
+                (invoice) => invoice.id !== this.selectedInvoice.id
+              );
+              this.selectedInvoice = null;
+              this.showDeleteInvoiceModal = false;
+            }
+          },
+
+          filterInvoices() {
+            this.currentPage = 1; // Reset to first page on search
+          },
+
+          get filteredInvoices() {
+            return this.invoices.filter((invoice) => {
+              const queryMatch = invoice.id.includes(this.searchQuery);
+              const statusMatch = this.filters.status
+                ? invoice.status.toLowerCase() ===
+                  this.filters.status.toLowerCase()
+                : true;
+              const clientMatch = this.filters.client
+                ? invoice.client.toLowerCase() ===
+                  this.filters.client.toLowerCase()
+                : true;
+              const dateMatch = this.filters.date
+                ? invoice.dateOfIssuance === this.filters.date
+                : true;
+              return queryMatch && statusMatch && clientMatch && dateMatch;
+            });
+          },
+
+          sort(column) {
+            if (this.sortKey === column) {
+              this.sortOrder = this.sortOrder === "asc" ? "desc" : "asc";
+            } else {
+              this.sortKey = column;
+              this.sortOrder = "asc";
+            }
+          },
+
+          sortedInvoices() {
+            return this.filteredInvoices.slice().sort((a, b) => {
+              let modifier = this.sortOrder === "asc" ? 1 : -1;
+              if (this.sortKey === "id") {
+                return a.id > b.id ? 1 * modifier : -1 * modifier;
+              } else if (this.sortKey === "date") {
+                return new Date(a.dateOfIssuance) > new Date(b.dateOfIssuance)
+                  ? 1 * modifier
+                  : -1 * modifier;
+              } else if (this.sortKey === "invoiceAmount") {
+                return (a.invoiceAmount > b.invoiceAmount ? 1 : -1) * modifier;
+              } else if (this.sortKey === "amountPaid") {
+                return (a.amountPaid > b.amountPaid ? 1 : -1) * modifier;
+              } else if (this.sortKey === "client") {
+                return a.client > b.client ? 1 * modifier : -1 * modifier;
+              } else if (this.sortKey === "status") {
+                return a.status > b.status ? 1 * modifier : -1 * modifier;
+              }
+            });
+          },
+
+          paginatedInvoices() {
+            const start = (this.currentPage - 1) * this.itemsPerPage;
+            const end = this.currentPage * this.itemsPerPage;
+            return this.sortedInvoices().slice(start, end);
+          },
+
+          get totalPages() {
+            return Math.ceil(this.filteredInvoices.length / this.itemsPerPage);
+          },
+
+          goToPage(page) {
+            if (page > 0 && page <= this.totalPages) {
+              this.currentPage = page;
+            }
+          },
+
+          get firstItem() {
+            return (this.currentPage - 1) * this.itemsPerPage + 1;
+          },
+
+          get lastItem() {
+            const end = this.currentPage * this.itemsPerPage;
+            return end > this.filteredInvoices.length
+              ? this.filteredInvoices.length
+              : end;
+          },
+        };
+      }
+    </script>
+  </body>
+</html>
