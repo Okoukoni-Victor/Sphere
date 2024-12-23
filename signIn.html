@@ -114,7 +114,7 @@
             class="password-toggle-btn cursor-pointer border-0"
             onclick="togglePasswordVisibility()"
           >
-            <i class="bi bi-eye-slash" id="toggleIcon"></i>
+            <i class="bi bi-eye" id="toggleIcon"></i>
           </button>
         </div>
 
@@ -148,12 +148,10 @@
 
         if (passwordInput.type === "password") {
           passwordInput.type = "text";
-          toggleIcon.classList.remove("bi-eye-slash");
-          toggleIcon.classList.add("bi-eye");
+          toggleIcon.classList.replace("bi-eye", "bi-eye-slash");
         } else {
           passwordInput.type = "password";
-          toggleIcon.classList.remove("bi-eye");
-          toggleIcon.classList.add("bi-eye-slash");
+          toggleIcon.classList.replace("bi-eye-slash", "bi-eye");
         }
       }
 
